@@ -1,0 +1,57 @@
+<div class="a">
+    <div class="b" *ngIf="isVisible">
+        <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+            <label>Product Id </label>
+            <input type="text" formControlName="id" disabled>
+            <label>Product Name </label>
+            <input formControlName="name" type="text">
+            <label>Description </label>
+            <input formControlName="description" type="text">
+            <label>Price </label>
+            <input formControlName="price" type="number">
+            <label>Image Url </label>
+            <input formControlName="imgURL" type="text">
+            <br><br>
+            <button type="submit" [disabled]="!productForm.valid"> {{mode}} Product </button>
+            <br>
+        </form> 
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<div class="a">
+    <div class="b">
+        <table *ngIf="items && items.length; else noProduct">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Price</td>
+                    <td>Image</td>
+                    <td>
+                        <button (click)="showProduct()" routerLink="product"> Add New Product </button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <td width="5%">{{item.id}}</td>
+                    <td width="20%">{{item.name}}</td>
+                    <td width="25%">{{item.description}}</td>
+                    <td width="10%">{{item.price}}</td>
+                    <td width="20%"><img src={{item.imgURL}}></td>
+                    <td width="20%">
+                        <button class="btnTbl" (click)="showUpdateForm(item)"> Update </button>
+                        <button class="btnTbl" (click)="deleteProduct(item.id)"> Delete </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-template #noProduct>
+            No items available
+        </ng-template>
+        <br>
+    </div>
+</div>

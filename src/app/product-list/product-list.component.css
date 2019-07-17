@@ -1,0 +1,31 @@
+tr, td {
+    padding: 2%;
+}
+
+div.a {
+    padding: 2%;
+    background-color: pink;
+}
+
+div.b {
+    padding: 1%;
+    background-color: white;
+}
+
+div.c {
+    padding: 1%;
+    margin: 1%;
+    border-style: solid;
+}
+
+button {
+    width: 100%;
+}
+
+img {
+    height: 50px;
+}
+
+button.btnTbl {
+    width: 50%;
+}
