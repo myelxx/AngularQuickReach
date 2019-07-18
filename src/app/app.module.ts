@@ -7,19 +7,20 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProductComponent } from './product/product.component';
 import { ProductService } from './product-list/product.service';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { CategoryComponent } from './category/category.component';
+import { CategoryService } from './category/category.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ProductListComponent
+    ProductListComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,7 @@ import { ProductListComponent } from './product-list/product-list.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

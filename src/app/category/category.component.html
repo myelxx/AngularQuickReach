@@ -1,45 +1,32 @@
 <div class="a">
     <div class="b" *ngIf="isVisible">
-        <form [formGroup]="productForm" (ngSubmit)="submitForm()">
-            <label *ngIf="!isVisible">Product Id </label>
+        <form [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+           <label *ngIf="!isVisible" >Product Id </label>
             <input *ngIf="!isVisible" type="text" formControlName="id" disabled>
             <br>
-            <label>Product Name </label>
-            <br>
+            <label>Category Name </label>
             <input formControlName="name" type="text">
-            <br><br>
+            <br>
             <label>Description </label>
-            <br>
             <input formControlName="description" type="text">
-            <br><br>
-            <label>Price </label>
             <br>
-            <input formControlName="price" type="number">
             <br><br>
-            <label>Image Url </label>
-            <br>
-            <input formControlName="imgURL" type="text">
-            <br><br>
-            <button type="submit" [disabled]="!productForm.valid" class="btnTbl"> {{mode}} Product </button>
+            <button type="submit" [disabled]="!categoryForm.valid" class="btnTbl"> {{mode}} Category </button>
             <br>
         </form> 
     </div>
 </div>
 
-
-
 <div class="a">
     <div class="b">
-        <table *ngIf="items && items.length; else noProduct">
+        <table *ngIf="items && items.length; else noCategory">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Price</th>
-                    <th>Image</th>
                     <th>
-                        <button (click)="showProduct()"> Add New Product </button>
+                        <button (click)="showCategory()"> Add New {{title}} </button>
                     </th>
                 </tr>
             </thead>
@@ -48,17 +35,15 @@
                     <td width="5%">{{item.id}}</td>
                     <td width="20%">{{item.name}}</td>
                     <td width="25%">{{item.description}}</td>
-                    <td width="10%">{{item.price}}</td>
-                    <td width="20%"><img src={{item.imgURL}}></td>
                     <td width="20%">
                         <button class="btnTblUd" (click)="showUpdateForm(item)"> Update </button>
-                        <button class="btnTblDel" (click)="deleteProduct(item.id)"> Delete </button>
+                        <button class="btnTblDel" (click)="deleteCategory(item.id)"> Delete </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <ng-template #noProduct>
-            No items available
+        <ng-template #noCategory>
+            No category available
         </ng-template>
         <br>
     </div>

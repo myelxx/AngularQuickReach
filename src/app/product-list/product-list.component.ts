@@ -11,8 +11,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 export class ProductListComponent implements OnInit {
   mode: string = "Create";
-  constructor(private _quickreachService: ProductService, private router: Router, 
-              private fb: FormBuilder) { }
+  constructor(private _quickreachService: ProductService, private router: Router,
+    private fb: FormBuilder) { }
 
   items: any[] = [];
   errorMsg: string = "";
@@ -31,17 +31,17 @@ export class ProductListComponent implements OnInit {
       this.productForm = this.fb.group({
         id: [''],
         name: ['', Validators.required],
-        description: [''],
-        imgURL: [''],
-        price: ['']
+        description: ['', Validators.required],
+        imgURL: ['', Validators.required],
+        price: ['', Validators.required]
       });
     } else {
       this.productForm = this.fb.group({
         id: [this.productAdd.id],
-        name: [this.productAdd.name],
-        description: [this.productAdd.description],
-        imgURL: [this.productAdd.imgURL],
-        price: [this.productAdd.price]
+        name: [this.productAdd.name, Validators.required],
+        description: [this.productAdd.description, Validators.required],
+        imgURL: [this.productAdd.imgURL, Validators.required],
+        price: [this.productAdd.price, Validators.required]
       });
     }
   }
@@ -62,7 +62,6 @@ export class ProductListComponent implements OnInit {
       this.productAdd.description = formValues['description'];
       this.productAdd.imgURL = formValues['imgURL'];
       this.productAdd.price = formValues['price'];
-
     }
   }
 
@@ -87,6 +86,7 @@ export class ProductListComponent implements OnInit {
       .subscribe(data => {
         this.initProductForm(true);
         this.displayProduct();
+        this.mode = "Create";
       }, error => { this.errorMsg = error });
   }
 
@@ -100,6 +100,8 @@ export class ProductListComponent implements OnInit {
 
   showProduct() {
     this.isVisible = !this.isVisible;
+    this.mode = "Create";
+    this.initProductForm(true);
   }
 
   showUpdateForm(item: any) {
@@ -115,7 +117,12 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this._quickreachService.deleteItem(id).subscribe(data => data, error => this.errorMsg = error);
-    this.displayProduct();
+    if (confirm('Do you want to delete this product?')) {
+      this._quickreachService.deleteItem(id)
+        .subscribe(data => { alert('deleted'), this.displayProduct() }, error => this.errorMsg = error);
+    } else {
+      alert('canceled deletion')
+    }
+
   }
 }

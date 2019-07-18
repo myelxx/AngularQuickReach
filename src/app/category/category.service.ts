@@ -6,35 +6,34 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  private url: string = "https://localhost:5001/api/products";
-  private updateUrl: string = "https://localhost:5001/api/products/";
+export class CategoryService {
+  private url: string = "https://localhost:5001/api/categories";
 
   constructor(private http: HttpClient) {
 
   }
 
-  getItem(): Observable<any[]> {
+  getCategories(): Observable<any[]> {
     return this.http.get<any[]>(this.url).pipe(
       catchError(this.errorHandler));
    
   }
 
-  addItem(item: any): Observable<any[]> {
+  addCategory(item: any): Observable<any[]> {
     return this.http.post<any[]>(this.url, item).pipe(
       catchError(this.errorHandler));
   }
 
-  updateItem(item: any): Observable<any[]> {
-    return this.http.put<any[]>(this.updateUrl+item.id, item).pipe(
+  updateCategory(item: any): Observable<any[]> {
+    return this.http.put<any[]>(this.url+'/'+item.id, item).pipe(
       catchError(this.errorHandler));
    
   }
 
-  deleteItem(id: number): Observable<any[]> {
+  deleteCategory(id: number): Observable<any[]> {
     console.log(id)
 
-    return this.http.delete<any[]>(this.updateUrl+id).pipe(
+    return this.http.delete<any[]>(this.url+'/'+id).pipe(
       catchError(this.errorHandler));
    
   }

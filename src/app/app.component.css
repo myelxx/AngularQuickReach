@@ -8,6 +8,11 @@ nav {
 a {
     margin: 2%;
     color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #4d4e4f;
 }
 
 div {
