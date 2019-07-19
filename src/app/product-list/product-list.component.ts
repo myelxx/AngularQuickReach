@@ -76,6 +76,7 @@ export class ProductListComponent implements OnInit {
       .subscribe(data => {
         this.initProductForm(true);
         this.displayProduct();
+        alert('added');
       }, error => { this.errorMsg = error });
     console.log(this.productForm.value)
   }
@@ -87,6 +88,7 @@ export class ProductListComponent implements OnInit {
         this.initProductForm(true);
         this.displayProduct();
         this.mode = "Create";
+        alert('updated');
       }, error => { this.errorMsg = error });
   }
 
