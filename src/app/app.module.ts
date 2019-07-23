@@ -14,6 +14,11 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './category/category.service';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './home/material-module';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +26,17 @@ import { CategoryService } from './category/category.service';
     PageNotFoundComponent,
     ProductListComponent,
     CategoryComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]
